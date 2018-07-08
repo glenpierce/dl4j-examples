@@ -2,6 +2,7 @@ package org.deeplearning4j.examples.feedforward.mnist;
 
 import org.deeplearning4j.datasets.iterator.impl.MnistDataSetIterator;
 import org.deeplearning4j.eval.Evaluation;
+import org.deeplearning4j.nn.api.OptimizationAlgorithm;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.layers.DenseLayer;
@@ -57,7 +58,7 @@ public class MLPMnistSingleLayerExample {
         log.info("Build model....");
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(rngSeed) //include a random seed for reproducibility
-                // use stochastic gradient descent as an optimization algorithm
+                .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)// use stochastic gradient descent as an optimization algorithm
                 .updater(new Nesterovs(0.006, 0.9))
                 .l2(1e-4)
                 .list()
